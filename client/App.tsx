@@ -6,9 +6,12 @@ import Courses from "./pages/admin/Courses";
 import Settings from "./pages/admin/Settings";
 import Logs from "./pages/admin/Logs";
 import RHDashboard from "./pages/rh/Dashboard";
+import HourEntry from "./pages/rh/HourEntry";
+import Validation from "./pages/rh/Validation";
+import Payroll from "./pages/rh/Payroll";
 import TeacherDashboard from "./pages/teacher/Dashboard";
 import TeacherSummary from "./pages/teacher/Summary";
-import Placeholder from "./pages/Placeholder";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 export default function App() {
@@ -27,16 +30,16 @@ export default function App() {
 
       {/* RH Routes */}
       <Route path="/rh" element={<RHDashboard />} />
-      <Route path="/rh/entry" element={<Placeholder title="Saisie des Heures" userRole="rh" pageName="Saisie des Heures" />} />
-      <Route path="/rh/validation" element={<Placeholder title="Validation des Heures" userRole="rh" pageName="Validation des Heures" />} />
-      <Route path="/rh/payroll" element={<Placeholder title="États de Paiement" userRole="rh" pageName="États de Paiement" />} />
+      <Route path="/rh/entry" element={<HourEntry />} />
+      <Route path="/rh/validation" element={<Validation />} />
+      <Route path="/rh/payroll" element={<Payroll />} />
 
       {/* Teacher Routes */}
       <Route path="/teacher" element={<TeacherDashboard />} />
       <Route path="/teacher/summary" element={<TeacherSummary />} />
 
       {/* Other Routes */}
-      <Route path="/profile" element={<Placeholder title="Mon Profil" userRole="admin" pageName="Profil Utilisateur" />} />
+      <Route path="/profile" element={<Profile />} />
 
       {/* Catch-all */}
       <Route path="*" element={<NotFound />} />
