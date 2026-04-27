@@ -26,9 +26,9 @@ const mockPayroll: PayrollItem[] = [
     normalHours: 67,
     complementaryHours: 0,
     ratesCMTDTP: "85/60/50",
-    normalAmount: 2680,
+    normalAmount: 268000,
     complementaryAmount: 0,
-    total: 2680,
+    total: 268000,
     paymentStatus: "Payé",
   },
   {
@@ -39,9 +39,9 @@ const mockPayroll: PayrollItem[] = [
     normalHours: 55,
     complementaryHours: 5,
     ratesCMTDTP: "75/55/0",
-    normalAmount: 2200,
-    complementaryAmount: 225,
-    total: 2425,
+    normalAmount: 220000,
+    complementaryAmount: 22500,
+    total: 242500,
     paymentStatus: "En attente",
   },
   {
@@ -52,9 +52,9 @@ const mockPayroll: PayrollItem[] = [
     normalHours: 78,
     complementaryHours: 8,
     ratesCMTDTP: "50/40/35",
-    normalAmount: 2600,
-    complementaryAmount: 280,
-    total: 2880,
+    normalAmount: 260000,
+    complementaryAmount: 28000,
+    total: 288000,
     paymentStatus: "Payé",
   },
   {
@@ -65,9 +65,9 @@ const mockPayroll: PayrollItem[] = [
     normalHours: 45,
     complementaryHours: 10,
     ratesCMTDTP: "40/30/25",
-    normalAmount: 1350,
-    complementaryAmount: 280,
-    total: 1630,
+    normalAmount: 135000,
+    complementaryAmount: 28000,
+    total: 163000,
     paymentStatus: "Partiellement payé",
   },
   {
@@ -78,9 +78,9 @@ const mockPayroll: PayrollItem[] = [
     normalHours: 80,
     complementaryHours: 5,
     ratesCMTDTP: "80/60/45",
-    normalAmount: 3200,
-    complementaryAmount: 180,
-    total: 3380,
+    normalAmount: 320000,
+    complementaryAmount: 18000,
+    total: 338000,
     paymentStatus: "En attente",
   },
 ];
@@ -241,7 +241,7 @@ export default function Payroll() {
 
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <StatCard label="Total à payer" value={`${totalAmount}€`} />
+        <StatCard label="Total à payer" value={`${totalAmount.toLocaleString()} CFA`} />
         <StatCard label="Enseignants concernés" value={teacherCount} />
         <StatCard label="Heures normales total" value={`${totalNormalHours}h`} />
         <StatCard
@@ -310,7 +310,7 @@ export default function Payroll() {
                     {item.complementaryHours}h
                   </td>
                   <td className="px-6 py-4 text-right font-semibold text-neutral-900">
-                    {item.total}€
+                    {item.total.toLocaleString()} CFA
                   </td>
                   <td className="px-6 py-4">
                     <span

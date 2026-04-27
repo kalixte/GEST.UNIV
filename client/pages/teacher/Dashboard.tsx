@@ -137,7 +137,7 @@ export default function TeacherDashboard() {
         />
         <StatCard
           label="Montant estimé"
-          value="2,680€"
+          value="268 000 CFA"
           icon={<DollarSign size={24} className="text-success-500" />}
           bgColor="bg-success-50"
         />

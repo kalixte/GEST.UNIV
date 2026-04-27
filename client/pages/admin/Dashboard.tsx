@@ -139,7 +139,7 @@ export default function AdminDashboard() {
         />
         <StatCard
           label="Montant total à payer"
-          value="49,600€"
+          value="49 600 CFA"
           icon={<DollarSign size={24} className="text-success-500" />}
           change={{ value: 8, isPositive: true }}
           bgColor="bg-success-50"
@@ -280,7 +280,7 @@ export default function AdminDashboard() {
                     {teacher.total}
                   </td>
                   <td className="px-6 py-4 text-sm font-semibold text-right text-primary-600">
-                    {teacher.amount.toLocaleString()}€
+                    {teacher.amount.toLocaleString()} CFA
                   </td>
                 </tr>
               ))}

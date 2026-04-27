@@ -338,7 +338,7 @@ export default function HourEntry() {
                 <span className="font-semibold">Équivalent TD:</span>{" "}
                 {equivalentHours}h |{" "}
                 <span className="font-semibold">Montant estimé:</span>{" "}
-                {estimatedAmount}€
+                {estimatedAmount} CFA
               </p>
             </div>
           )}

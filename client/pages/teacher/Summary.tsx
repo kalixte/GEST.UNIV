@@ -24,7 +24,7 @@ const mockData: SummaryItem[] = [
     td: 10,
     tp: 8,
     totalEquiv: 38,
-    amount: 1520,
+    amount: 152000,
   },
   {
     id: 2,
@@ -35,7 +35,7 @@ const mockData: SummaryItem[] = [
     td: 10,
     tp: 8,
     totalEquiv: 36,
-    amount: 1440,
+    amount: 144000,
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const mockData: SummaryItem[] = [
     td: 8,
     tp: 6,
     totalEquiv: 31.5,
-    amount: 1260,
+    amount: 126000,
   },
   {
     id: 4,
@@ -57,7 +57,7 @@ const mockData: SummaryItem[] = [
     td: 12,
     tp: 6,
     totalEquiv: 40.5,
-    amount: 1620,
+    amount: 162000,
   },
 ];
 
@@ -217,7 +217,7 @@ export default function TeacherSummary() {
                     {item.totalEquiv}h
                   </td>
                   <td className="px-6 py-4 text-sm text-right font-semibold text-neutral-900">
-                    {item.amount}€
+                    {item.amount.toLocaleString()} CFA
                   </td>
                 </tr>
               ))}
@@ -239,7 +239,7 @@ export default function TeacherSummary() {
                   {totalEquiv}h
                 </td>
                 <td className="px-6 py-4 text-sm text-right font-bold text-primary-600">
-                  {totalAmount}€
+                  {totalAmount.toLocaleString()} CFA
                 </td>
               </tr>
             </tbody>

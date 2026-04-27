@@ -293,13 +293,13 @@ export default function Teachers() {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-center text-neutral-700">
-                    {teacher.rateCM}€
+                    {teacher.rateCM} CFA
                   </td>
                   <td className="px-6 py-4 text-sm text-center text-neutral-700">
-                    {teacher.rateTD}€
+                    {teacher.rateTD} CFA
                   </td>
                   <td className="px-6 py-4 text-sm text-center text-neutral-700">
-                    {teacher.rateTP}€
+                    {teacher.rateTP} CFA
                   </td>
                   <td className="px-6 py-4 text-sm text-center font-medium text-neutral-900">
                     {teacher.contractualHours}h
