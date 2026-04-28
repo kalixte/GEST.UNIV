@@ -11,12 +11,12 @@
    * Colors expressed as HSL for Tailwind integration
   */
   :root {
-    /* Primary - #2563EB */
-    --primary-50: 218 96% 95%;
-    --primary-100: 218 96% 89%;
-    --primary-500: 217 99% 50%;
-    --primary-600: 216 95% 45%;
-    --primary: 217 99% 50%;
+    /* Primary - #7A92C2 */
+    --primary-50: 218 45% 92%;
+    --primary-100: 218 42% 87%;
+    --primary-500: 218 35% 60%;
+    --primary-600: 218 38% 55%;
+    --primary: 218 35% 60%;
     --primary-foreground: 210 40% 98%;
 
     /* Success - #16A34A */
@@ -55,13 +55,13 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 84% 10%;
 
-    --secondary: 210 40% 96.1%;
+    --secondary: 217 55% 85%;
     --secondary-foreground: 222 84% 10%;
 
-    --muted: 210 40% 96.1%;
+    --muted: 217 55% 85%;
     --muted-foreground: 215 14% 54%;
 
-    --accent: 217 99% 50%;
+    --accent: 218 35% 60%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84% 60%;
@@ -73,15 +73,15 @@
 
     --radius: 0.5rem;
 
-    /* Sidebar - #1E293B dark */
-    --sidebar-background: 222 84% 10%;
+    /* Sidebar - Dark blue matching theme */
+    --sidebar-background: 218 38% 35%;
     --sidebar-foreground: 0 0% 100%;
-    --sidebar-primary: 217 99% 50%;
+    --sidebar-primary: 218 35% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 84% 15%;
+    --sidebar-accent: 217 40% 48%;
     --sidebar-accent-foreground: 0 0% 100%;
-    --sidebar-border: 222 84% 15%;
-    --sidebar-ring: 217 99% 50%;
+    --sidebar-border: 217 40% 48%;
+    --sidebar-ring: 218 35% 60%;
   }
 
   .dark {
@@ -130,7 +130,9 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background: linear-gradient(135deg, #7A92C2 0%, #CBDFF5 100%);
+    background-attachment: fixed;
   }
 
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {

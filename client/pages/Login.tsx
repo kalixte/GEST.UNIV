@@ -28,9 +28,9 @@ export default function Login() {
           {/* Logo and Branding */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-primary-500 text-white mb-4">
-              <span className="text-2xl font-bold">E</span>
+              <span className="text-2xl font-bold">G</span>
             </div>
-            <h1 className="text-3xl font-bold text-neutral-900 mb-2">EduHeures</h1>
+            <h1 className="text-3xl font-bold text-neutral-900 mb-2">GEST.UNIV</h1>
             <p className="text-base text-neutral-600">
               Gestion des heures d'enseignement
             </p>

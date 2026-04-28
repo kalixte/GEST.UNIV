@@ -66,10 +66,10 @@ export default function Sidebar({ userRole, userName = "User" }: SidebarProps) {
       <div className="px-6 py-6 border-b border-sidebar-border">
         <Link to="/" className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-primary-500 flex items-center justify-center text-white font-bold text-lg">
-            E
+            G
           </div>
           <div>
-            <h1 className="text-lg font-bold text-sidebar-foreground">EduHeures</h1>
+            <h1 className="text-lg font-bold text-sidebar-foreground">GEST.UNIV</h1>
             <p className="text-xs text-neutral-500">Gestion des heures</p>
           </div>
         </Link>
