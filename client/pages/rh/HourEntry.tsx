@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Upload, X } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface FormData {
   teacher: string;
@@ -47,6 +48,7 @@ const equivalenceFactors: Record<string, number> = {
 };
 
 export default function HourEntry() {
+  const { success, warning } = useNotification();
   const [formData, setFormData] = useState<FormData>({
     teacher: "",
     course: "",
@@ -61,6 +63,30 @@ export default function HourEntry() {
 
   const [dragActive, setDragActive] = useState(false);
   const [file, setFile] = useState<File | null>(null);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.teacher || !formData.course || !formData.date || !formData.startTime || !formData.endTime) {
+      warning("Veuillez remplir tous les champs obligatoires");
+      return;
+    }
+    success("Saisie d'heures enregistrée avec succès");
+    setFormData({
+      teacher: "",
+      course: "",
+      sessionType: "CM",
+      date: "",
+      startTime: "",
+      endTime: "",
+      room: "",
+      group: "",
+      observations: "",
+    });
+  };
+
+  const handleQuickEntry = () => {
+    success("Mode saisie rapide activé");
+  };
 
   const calculateDuration = () => {
     if (!formData.startTime || !formData.endTime) return 0;
@@ -114,14 +140,14 @@ export default function HourEntry() {
       {/* Header with Secondary Button */}
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-lg font-semibold text-neutral-900"></h2>
-        <button className="py-2.5 px-6 border-2 border-neutral-300 text-neutral-700 font-semibold rounded-full hover:bg-neutral-100 transition-colors">
+        <button onClick={handleQuickEntry} className="py-2.5 px-6 border-2 border-neutral-300 text-neutral-700 font-semibold rounded-full hover:bg-neutral-100 transition-colors">
           Saisie rapide
         </button>
       </div>
 
       {/* Form Card */}
       <div className="max-w-2xl mx-auto bg-white rounded-lg border border-border p-8 mb-8">
-        <form className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-6">
           {/* Teacher Select */}
           <div>
             <label className="block text-sm font-medium text-neutral-700 mb-2">

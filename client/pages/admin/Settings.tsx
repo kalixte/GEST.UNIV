@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Plus, Edit2, Trash2, Save } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 type Tab = "general" | "equivalences" | "rates" | "years" | "users";
 
@@ -63,6 +64,7 @@ const mockUsers: User[] = [
 ];
 
 export default function Settings() {
+  const { success } = useNotification();
   const [activeTab, setActiveTab] = useState<Tab>("general");
   const [equivalences, setEquivalences] = useState({
     cm: 1.5,
@@ -78,7 +80,11 @@ export default function Settings() {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 500));
     setIsSaving(false);
-    // Show success toast in real app
+    success("Équivalences horaires enregistrées avec succès");
+  };
+
+  const handleAddYear = () => {
+    success("Formulaire d'ajout d'année académique ouvert");
   };
 
   const tabs: { id: Tab; label: string }[] = [
@@ -196,7 +202,7 @@ export default function Settings() {
       {/* Années académiques Tab */}
       {activeTab === "years" && (
         <div className="space-y-6">
-          <button className="py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center gap-2">
+          <button onClick={handleAddYear} className="py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center gap-2">
             <Plus size={20} />
             Ajouter une année
           </button>

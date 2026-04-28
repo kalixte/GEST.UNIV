@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Plus, Download, FileText, Eye } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface PayrollItem {
   id: number;
@@ -111,10 +112,19 @@ const getStatusColor = (status: string) => {
 };
 
 export default function Payroll() {
+  const { success } = useNotification();
   const [items, setItems] = useState<PayrollItem[]>(mockPayroll);
   const [selectedMonth, setSelectedMonth] = useState("01-2024");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
+
+  const handleGeneratePayroll = () => {
+    success("Génération des états de paiement en cours...");
+  };
+
+  const handleExport = () => {
+    success("Export Excel en cours...");
+  };
 
   const departments = [...new Set(items.map((i) => i.department))];
   const statuses = ["En attente", "Payé", "Partiellement payé"];
@@ -149,7 +159,7 @@ export default function Payroll() {
       {/* Header with Generate Button */}
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-6 gap-4">
         <h2 className="text-lg font-semibold text-neutral-900"></h2>
-        <button className="w-full md:w-auto py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
+        <button onClick={handleGeneratePayroll} className="w-full md:w-auto py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
           <Plus size={20} />
           Générer les états
         </button>
@@ -227,7 +237,7 @@ export default function Payroll() {
 
           {/* Export Button */}
           <div className="flex items-end">
-            <button className={cn(
+            <button onClick={handleExport} className={cn(
               "w-full py-2 px-4 rounded-lg border-2 border-neutral-300",
               "text-neutral-700 font-semibold hover:bg-neutral-100",
               "transition-colors flex items-center justify-center gap-2"

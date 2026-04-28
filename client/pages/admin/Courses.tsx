@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface Course {
   id: number;
@@ -120,10 +121,15 @@ const ProgressBar = ({ done, planned }: { done: number; planned: number }) => {
 };
 
 export default function Courses() {
+  const { success } = useNotification();
   const [courses, setCourses] = useState<Course[]>(mockCourses);
   const [selectedFiliere, setSelectedFiliere] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
+
+  const handleAddCourse = () => {
+    success("Formulaire d'ajout de matière ouvert");
+  };
 
   const filteredCourses = courses.filter((course) => {
     const matchesFiliere = !selectedFiliere || course.filiere === selectedFiliere;
@@ -147,7 +153,7 @@ export default function Courses() {
         <h2 className="text-lg font-semibold text-neutral-900">
           {filteredCourses.length} matière{filteredCourses.length !== 1 ? "s" : ""}
         </h2>
-        <button className="w-full md:w-auto py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
+        <button onClick={handleAddCourse} className="w-full md:w-auto py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
           <Plus size={20} />
           Ajouter une matière
         </button>

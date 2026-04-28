@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Plus, Edit2, Trash2, Eye } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface Teacher {
   id: number;
@@ -93,11 +94,16 @@ const getStatusColor = (status: string) => {
 };
 
 export default function Teachers() {
+  const { success } = useNotification();
   const [teachers, setTeachers] = useState<Teacher[]>(mockTeachers);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("");
   const [selectedGrade, setSelectedGrade] = useState("");
+
+  const handleAddTeacher = () => {
+    success("Formulaire d'ajout d'enseignant ouvert");
+  };
 
   const filteredTeachers = teachers.filter((teacher) => {
     const matchesSearch =
@@ -131,7 +137,7 @@ export default function Teachers() {
         <h2 className="text-lg font-semibold text-neutral-900">
           {filteredTeachers.length} enseignant{filteredTeachers.length !== 1 ? "s" : ""}
         </h2>
-        <button className="w-full md:w-auto py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
+        <button onClick={handleAddTeacher} className="w-full md:w-auto py-2.5 px-6 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
           <Plus size={20} />
           Ajouter un enseignant
         </button>

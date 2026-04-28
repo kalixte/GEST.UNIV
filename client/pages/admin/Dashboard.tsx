@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Users, Clock, DollarSign, AlertCircle, ArrowUp, ArrowDown } from "lucide-react";
 import { BarChart, Bar, LineChart, Line, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface StatCardProps {
   label: string;
@@ -114,6 +115,20 @@ const topTeachers = [
 const COLORS = ["#2563EB", "#16A34A", "#D97706"];
 
 export default function AdminDashboard() {
+  const { success } = useNotification();
+
+  const handleAddTeacher = () => {
+    success("Formulaire d'ajout d'enseignant ouvert");
+  };
+
+  const handleAddHours = () => {
+    success("Fenêtre de saisie d'heures ouvert");
+  };
+
+  const handleGeneratePayroll = () => {
+    success("Génération des états de paiement en cours...");
+  };
+
   return (
     <Layout
       userRole="admin"
@@ -291,15 +306,15 @@ export default function AdminDashboard() {
 
       {/* Quick Actions */}
       <div className="flex flex-col sm:flex-row gap-4 mt-8">
-        <button className="flex-1 py-3 px-4 rounded-full bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
+        <button onClick={handleAddTeacher} className="flex-1 py-3 px-4 rounded-full bg-primary-500 text-white font-semibold hover:bg-primary-600 transition-colors flex items-center justify-center gap-2">
           <span>+</span>
           Ajouter enseignant
         </button>
-        <button className="flex-1 py-3 px-4 rounded-full border-2 border-primary-500 text-primary-500 font-semibold hover:bg-primary-50 transition-colors flex items-center justify-center gap-2">
+        <button onClick={handleAddHours} className="flex-1 py-3 px-4 rounded-full border-2 border-primary-500 text-primary-500 font-semibold hover:bg-primary-50 transition-colors flex items-center justify-center gap-2">
           <span>+</span>
           Saisir heures
         </button>
-        <button className="flex-1 py-3 px-4 rounded-full border-2 border-neutral-300 text-neutral-700 font-semibold hover:bg-neutral-100 transition-colors">
+        <button onClick={handleGeneratePayroll} className="flex-1 py-3 px-4 rounded-full border-2 border-neutral-300 text-neutral-700 font-semibold hover:bg-neutral-100 transition-colors">
           Générer états de paiement
         </button>
       </div>
