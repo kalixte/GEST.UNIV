@@ -13,10 +13,30 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate login - in real app, call API
+
+    // Simulate login with role-based routing
+    const users: Record<string, { password: string; role: string }> = {
+      "admin@example.com": { password: "Admin123!", role: "admin" },
+      "rh@example.com": { password: "RH123!", role: "rh" },
+      "teacher@example.com": { password: "Teacher123!", role: "teacher" },
+    };
+
+    const user = users[email];
+
     setTimeout(() => {
-      // Navigate to admin dashboard for demo
-      navigate("/admin");
+      if (user && user.password === password) {
+        // Navigate to appropriate dashboard based on role
+        if (user.role === "admin") {
+          navigate("/admin");
+        } else if (user.role === "rh") {
+          navigate("/rh");
+        } else if (user.role === "teacher") {
+          navigate("/teacher");
+        }
+      } else {
+        // Show error - invalid credentials
+        alert("Email ou mot de passe incorrect");
+      }
       setIsLoading(false);
     }, 500);
   };
