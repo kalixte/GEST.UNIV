@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Check, X, CheckSquare, Square } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface ValidationItem {
   id: number;
@@ -53,6 +54,7 @@ const mockPendingItems: ValidationItem[] = [
 ];
 
 export default function Validation() {
+  const { success } = useNotification();
   const [items, setItems] = useState<ValidationItem[]>(mockPendingItems);
   const [selectedItem, setSelectedItem] = useState<ValidationItem | null>(
     items[0] || null
@@ -81,6 +83,7 @@ export default function Validation() {
     if (selectedItem && idsToValidate.includes(selectedItem.id)) {
       setSelectedItem(null);
     }
+    success(`${idsToValidate.length} saisie(s) validée(s) avec succès`);
   };
 
   const handleReject = (id?: number) => {
@@ -90,6 +93,7 @@ export default function Validation() {
     if (selectedItem && idsToReject.includes(selectedItem.id)) {
       setSelectedItem(null);
     }
+    success(`${idsToReject.length} saisie(s) rejetée(s)`);
   };
 
   return (

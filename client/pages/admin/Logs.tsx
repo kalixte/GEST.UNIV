@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Download, Calendar } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface LogEntry {
   id: number;
@@ -130,6 +131,7 @@ const getActionBadgeColor = (action: string) => {
 };
 
 export default function Logs() {
+  const { success } = useNotification();
   const [logs, setLogs] = useState<LogEntry[]>(mockLogs);
   const [actionFilter, setActionFilter] = useState<string>("");
   const [userFilter, setUserFilter] = useState<string>("");
@@ -176,6 +178,7 @@ export default function Logs() {
     a.href = url;
     a.download = `logs_${new Date().toISOString().split("T")[0]}.csv`;
     a.click();
+    success("Export CSV téléchargé avec succès");
   };
 
   return (

@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Clock, CheckCircle2, Users, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface HourEntry {
   id: number;
@@ -110,8 +111,13 @@ const getStatusColor = (status: string) => {
 };
 
 export default function RHDashboard() {
+  const { success } = useNotification();
   const [entries, setEntries] = useState<HourEntry[]>(mockEntries);
   const [activeFilter, setActiveFilter] = useState<string>("Toutes");
+
+  const handleViewList = () => {
+    success("Liste des saisies en attente affichée");
+  };
 
   const filteredEntries =
     activeFilter === "Toutes"
@@ -170,7 +176,7 @@ export default function RHDashboard() {
               {pendingCount} saisie{pendingCount !== 1 ? "s":" "} d'heures en attente de validation
             </p>
           </div>
-          <button className="text-sm font-semibold text-warning-600 hover:text-warning-700 whitespace-nowrap ml-4">
+          <button onClick={handleViewList} className="text-sm font-semibold text-warning-600 hover:text-warning-700 whitespace-nowrap ml-4">
             Voir la liste
           </button>
         </div>

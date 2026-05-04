@@ -2,6 +2,7 @@ import Layout from "@/components/layout/Layout";
 import { Save, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useNotification } from "@/hooks/use-notification";
 
 interface ProfileData {
   firstName: string;
@@ -28,6 +29,7 @@ const initialProfile: ProfileData = {
 };
 
 export default function Profile() {
+  const { success, error } = useNotification();
   const [profile, setProfile] = useState<ProfileData>(initialProfile);
   const [security, setSecurity] = useState<SecurityForm>({
     currentPassword: "",
@@ -55,6 +57,7 @@ export default function Profile() {
     await new Promise((resolve) => setTimeout(resolve, 500));
     setIsSaving(false);
     setIsEditing(false);
+    success("Profil mis à jour avec succès");
   };
 
   const handleSecurityChange = (field: keyof SecurityForm, value: string) => {
@@ -63,13 +66,18 @@ export default function Profile() {
 
   const handleUpdatePassword = async () => {
     if (security.newPassword !== security.confirmPassword) {
-      // Show error in real app
+      error("Les mots de passe ne correspondent pas");
+      return;
+    }
+    if (security.newPassword.length < 8) {
+      error("Le mot de passe doit contenir au moins 8 caractères");
       return;
     }
     setIsSaving(true);
     await new Promise((resolve) => setTimeout(resolve, 500));
     setIsSaving(false);
     setSecurity({ currentPassword: "", newPassword: "", confirmPassword: "" });
+    success("Mot de passe mis à jour avec succès");
   };
 
   const getPasswordStrength = (password: string) => {
